@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" fill="none">
+  <defs><linearGradient id="a" x1="70" x2="875" y1="60" y2="570" gradientUnits="userSpaceOnUse"><stop stop-color="#0B1B3F"/><stop offset=".58" stop-color="#49338C"/><stop offset="1" stop-color="#A855F7"/></linearGradient></defs>
+  <path fill="url(#a)" d="M0 0h960v600H0z"/>
+  <circle cx="780" cy="128" r="152" fill="#2DD4BF" fill-opacity=".7"/>
+  <path fill="#FB923C" d="m102 443 188-257 177 257H102Z"/>
+  <path fill="#F4F6FA" fill-opacity=".92" d="M445 378c48-107 104-160 166-160 72 0 132 76 184 226H445v-66Z"/>
+  <path fill="#fff" fill-opacity=".12" d="M0 505c153-71 282-76 387-16 105 60 221 64 349 11 93-38 168-54 224-48v148H0v-95Z"/>
+  <text x="64" y="102" fill="#fff" font-family="Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="5">SIPENA CREATIVE</text>
+  <text x="64" y="542" fill="#fff" font-family="Arial,sans-serif" font-size="44" font-weight="700">DESAIN GRAFIS</text>
+</svg>

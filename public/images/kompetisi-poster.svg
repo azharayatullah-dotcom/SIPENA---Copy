@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" fill="none">
+  <defs><linearGradient id="b" x1="0" x2="960" y1="0" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#0B1B3F"/><stop offset="1" stop-color="#146B80"/></linearGradient></defs>
+  <path fill="url(#b)" d="M0 0h960v600H0z"/>
+  <path fill="#2DD4BF" d="M684 75h197v450H684z"/>
+  <path fill="#FB923C" d="m96 417 135-237 135 237H96Z"/>
+  <circle cx="450" cy="277" r="100" fill="#A855F7"/>
+  <path fill="#fff" fill-opacity=".95" d="M480 156h126v205H480z"/>
+  <path fill="#0B1B3F" d="M501 186h84v15h-84zm0 37h84v10h-84zm0 28h67v10h-67z"/>
+  <path fill="#fff" fill-opacity=".13" d="M0 485c182-93 354-106 516-38s310 77 444 27v126H0V485Z"/>
+  <text x="64" y="102" fill="#fff" font-family="Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="5">SIPENA CREATIVE</text>
+  <text x="64" y="542" fill="#fff" font-family="Arial,sans-serif" font-size="44" font-weight="700">KOMPETISI POSTER</text>
+</svg>

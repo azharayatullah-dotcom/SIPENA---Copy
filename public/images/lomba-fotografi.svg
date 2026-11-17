@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" fill="none">
+  <defs><linearGradient id="c" x1="0" x2="960" y1="0" y2="600" gradientUnits="userSpaceOnUse"><stop stop-color="#24335B"/><stop offset="1" stop-color="#0B1B3F"/></linearGradient></defs>
+  <path fill="url(#c)" d="M0 0h960v600H0z"/>
+  <circle cx="750" cy="185" r="92" fill="#FB923C"/>
+  <path fill="#2DD4BF" d="m63 470 213-264 164 264H63Z"/>
+  <path fill="#A855F7" fill-opacity=".88" d="m356 470 175-207 179 207H356Z"/>
+  <path fill="#fff" fill-opacity=".14" d="M0 497c169-61 309-61 421 0 112 61 247 67 405 17 55-18 99-26 134-25v111H0V497Z"/>
+  <rect x="604" y="296" width="220" height="148" rx="24" fill="#F4F6FA"/>
+  <circle cx="714" cy="370" r="47" fill="#0B1B3F"/>
+  <circle cx="714" cy="370" r="28" fill="#A855F7"/>
+  <circle cx="790" cy="323" r="11" fill="#FB923C"/>
+  <text x="64" y="102" fill="#fff" font-family="Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="5">SIPENA CREATIVE</text>
+  <text x="64" y="542" fill="#fff" font-family="Arial,sans-serif" font-size="44" font-weight="700">LOMBA FOTOGRAFI</text>
+</svg>
