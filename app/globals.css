@@ -29,6 +29,41 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.error-page {
+  display: grid;
+  min-height: 100vh;
+  align-content: center;
+  justify-items: start;
+  gap: 16px;
+  width: min(100% - 48px, 640px);
+  margin: 0 auto;
+}
+
+.error-page h1,
+.error-page p {
+  margin: 0;
+}
+
+.error-page h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  letter-spacing: -0.05em;
+}
+
+.error-page > p:not(.section-eyebrow) {
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.error-page button {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 button,
 input,
 select,

@@ -1,8 +1,7 @@
 import { randomUUID } from "node:crypto";
-import { mkdir, rm, writeFile } from "node:fs/promises";
-import path from "node:path";
 import { NextRequest, NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
+import { del, put } from "@vercel/blob";
 import { prisma } from "@/lib/prisma";
 import {
   INVALID_FILE_FORMAT_MESSAGE,
@@ -152,12 +151,14 @@ export async function POST(request: NextRequest) {
 
   const extension = mimeType === "image/jpeg" ? ".jpg" : mimeType === "image/png" ? ".png" : ".pdf";
   const filename = `${randomUUID()}${extension}`;
-  const uploadDirectory = path.join(process.cwd(), "uploads");
-  const absolutePath = path.join(uploadDirectory, filename);
-
+  let blobUrl: string | null = null;
   try {
-    await mkdir(uploadDirectory, { recursive: true, mode: 0o700 });
-    await writeFile(absolutePath, bytes, { flag: "wx", mode: 0o600 });
+    const blob = await put(`registrations/${filename}`, Buffer.from(bytes), {
+      access: "private",
+      addRandomSuffix: false,
+      contentType: mimeType
+    });
+    blobUrl = blob.url;
   } catch (error) {
     console.error("Gagal menyimpan berkas pendaftaran:", error);
     return NextResponse.json(
@@ -209,7 +210,7 @@ export async function POST(request: NextRequest) {
           nomor_registrasi,
           pesertaId: participant.id,
           lombaId: competition.id,
-          file_path: filename,
+          file_path: `registrations/${filename}`,
           file_mime: mimeType,
           qr_token: randomUUID()
         },
@@ -225,10 +226,12 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    try {
-      await rm(absolutePath, { force: true });
-    } catch (cleanupError) {
-      console.error("Gagal membersihkan berkas pendaftaran yang tidak tersimpan:", cleanupError);
+    if (blobUrl) {
+      try {
+        await del(blobUrl);
+      } catch (cleanupError) {
+        console.error("Gagal membersihkan berkas pendaftaran yang tidak tersimpan:", cleanupError);
+      }
     }
 
     if (error instanceof Error && error.message === "DUPLICATE_REGISTRATION") {

@@ -1,6 +1,5 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { NextResponse } from "next/server";
+import { get } from "@vercel/blob";
 import { getAdminSession } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
 
@@ -15,7 +14,12 @@ export async function GET(_request: Request, { params }: RouteContext) {
   }
 
   const registration = await prisma.pendaftaran.findFirst({
-    where: { file_path: params.filename },
+    where: {
+      OR: [
+        { file_path: params.filename },
+        { file_path: `registrations/${params.filename}` }
+      ]
+    },
     select: { file_mime: true }
   });
   if (!registration) {
@@ -23,8 +27,11 @@ export async function GET(_request: Request, { params }: RouteContext) {
   }
 
   try {
-    const contents = await readFile(path.join(process.cwd(), "uploads", params.filename));
-    return new NextResponse(contents, {
+    const result = await get(`registrations/${params.filename}`, { access: "private" });
+    if (!result || result.statusCode !== 200 || !result.stream) {
+      return NextResponse.json({ message: "Berkas tidak dapat dibuka." }, { status: 404 });
+    }
+    return new NextResponse(result.stream, {
       headers: {
         "Content-Type": registration.file_mime,
         "Content-Disposition": `inline; filename="${params.filename}"`,

@@ -269,7 +269,7 @@ export function AdminDashboard({ username }: { username: string }) {
                         ) : (
                           <a
                             className="font-bold text-purple-700 underline decoration-purple-200 underline-offset-2 hover:text-purple-900"
-                            href={`/api/admin/files/${encodeURIComponent(registration.file_path)}`}
+                            href={`/api/admin/files/${encodeURIComponent(registration.file_path.split("/").pop() ?? registration.file_path)}`}
                             target="_blank"
                             rel="noreferrer"
                           >

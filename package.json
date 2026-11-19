@@ -3,16 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build",
+    "dev": "prisma generate --schema prisma/schema.local.prisma && next dev",
+    "build": "prisma generate --schema prisma/schema.prisma && prisma migrate deploy --schema prisma/schema.prisma && next build",
+    "postinstall": "prisma generate --schema prisma/schema.prisma",
     "start": "next start",
-    "db:migrate": "prisma migrate dev",
-    "db:seed": "prisma db seed",
-    "db:studio": "prisma studio"
+    "db:migrate": "prisma db push --schema prisma/schema.local.prisma",
+    "db:seed": "prisma db seed --schema prisma/schema.local.prisma",
+    "db:studio": "prisma studio --schema prisma/schema.local.prisma"
   },
   "dependencies": {
     "@prisma/client": "5.22.0",
+    "@vercel/blob": "^2.9.0",
     "bcryptjs": "2.4.3",
+    "framer-motion": "^11.18.2",
     "jose": "5.10.0",
     "next": "14.2.35",
     "react": "18.3.1",

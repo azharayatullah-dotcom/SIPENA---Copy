@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("LOCAL_DATABASE_URL")
+}
+
+model Peserta {
+  id            String         @id @default(cuid())
+  nama_lengkap  String
+  nisn          String         @unique
+  kelas         String
+  asal_sekolah  String
+  no_wa         String
+  createdAt     DateTime       @default(now())
+  pendaftaran   Pendaftaran[]
+
+  @@index([nisn])
+}
+
+model Lomba {
+  id           String         @id
+  nama         String
+  deskripsi    String
+  gambar       String
+  kuota        Int
+  aktif        Boolean        @default(true)
+  biaya        Int            @default(0)
+  pendaftaran  Pendaftaran[]
+}
+
+model Pendaftaran {
+  id                  String   @id @default(cuid())
+  nomor_registrasi    String   @unique
+  pesertaId           String
+  lombaId             String
+  file_path           String
+  file_mime           String
+  status              String   @default("PENDING")
+  alasan_penolakan    String?
+  qr_token            String   @unique
+  createdAt           DateTime @default(now())
+  verifiedAt          DateTime?
+  peserta             Peserta  @relation(fields: [pesertaId], references: [id], onDelete: Cascade)
+  lomba               Lomba    @relation(fields: [lombaId], references: [id], onDelete: Restrict)
+
+  @@unique([pesertaId, lombaId])
+  @@index([status])
+  @@index([nomor_registrasi])
+}
+
+model Admin {
+  id            String @id @default(cuid())
+  username      String @unique
+  password_hash String
+}
